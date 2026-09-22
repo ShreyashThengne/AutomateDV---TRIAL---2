@@ -1,0 +1,10 @@
+
+target/
+
+logs
+
+.idea/
+
+dbt_modules
+dbt_packages
+dbt_internal_packages/
