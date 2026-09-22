@@ -1,8 +1,0 @@
-packages:
-- package: Datavault-UK/automate_dv
-  name: automate_dv
-  version: 0.9.7
-- package: dbt-labs/dbt_utils
-  name: dbt_utils
-  version: 1.4.1
-sha1_hash: 5b0aa48eb35aa88c79f91c69497e698bf47e8eab
