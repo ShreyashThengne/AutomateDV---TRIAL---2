@@ -1,0 +1,44 @@
+version: 2
+models:
+- name: link_customer_nation
+  columns:
+  - name: LINK_CUSTOMER_NATION_PK
+    tests:
+    - unique
+    - not_null
+- name: link_customer_order
+  columns:
+  - name: ORDER_CUSTOMER_PK
+    tests:
+    - unique
+    - not_null
+- name: link_inventory_allocation
+  columns:
+  - name: INVENTORY_ALLOCATION_PK
+    tests:
+    - unique
+    - not_null
+- name: link_inventory
+  columns:
+  - name: INVENTORY_PK
+    tests:
+    - unique
+    - not_null
+- name: link_nation_region
+  columns:
+  - name: NATION_REGION_PK
+    tests:
+    - unique
+    - not_null
+- name: link_order_lineitem
+  columns:
+  - name: LINK_LINEITEM_ORDER_PK
+    tests:
+    - unique
+    - not_null
+- name: link_supplier_nation
+  columns:
+  - name: LINK_SUPPLIER_NATION_PK
+    tests:
+    - unique
+    - not_null

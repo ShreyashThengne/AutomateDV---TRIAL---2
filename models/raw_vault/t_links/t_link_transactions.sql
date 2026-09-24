@@ -1,4 +1,4 @@
-{{ config(materialized='incremental', schema='DEMO', tags=['daily_batch', 't_link']) }}
+{{ config(materialized='incremental', schema='raw_vault', tags=['daily_batch', 't_link']) }}
 
 {%- set source_model = "v_stg_transactions" -%}
 {%- set src_pk = "TRANSACTION_PK" -%}
