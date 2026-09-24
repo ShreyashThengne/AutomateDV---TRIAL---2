@@ -1,8 +1,0 @@
-version: 2
-models:
-- name: t_link_transactions
-  columns:
-  - name: TRANSACTION_PK
-    tests:
-    - unique
-    - not_null
