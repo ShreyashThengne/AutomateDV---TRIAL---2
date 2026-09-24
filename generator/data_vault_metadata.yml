@@ -10,6 +10,21 @@ models:
     schema: DEMO
     tags:
       - daily_batch
+      - daily_batch_v1
+      - hub
+    source_model: v_stg_orders
+    src_pk: CUSTOMER_PK
+    src_nk: CUSTOMERKEY
+    src_ldts: LOAD_DATE
+    src_source: RECORD_SOURCE
+
+  hub_customer_v1:
+    type: hub
+    materialized: incremental
+    schema: DEMO
+    tags:
+      - daily_batch
+      - daily_batch_v1
       - hub
     source_model: v_stg_orders
     src_pk: CUSTOMER_PK
