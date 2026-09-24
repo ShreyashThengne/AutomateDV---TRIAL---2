@@ -32,7 +32,7 @@ schema_docs = {
     't_links': {'version': 2, 'models': []}
 }
 
-# NEW: Buffer dictionary to hold file contents in memory before writing
+# Buffer dictionary to hold file contents in memory before writing
 files_to_write = {}
 
 # ==========================================
