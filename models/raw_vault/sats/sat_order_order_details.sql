@@ -4,7 +4,7 @@
 {%- set src_pk = "ORDER_PK" -%}
 {%- set src_hashdiff = "ORDER_HASHDIFF" -%}
 {%- set src_eff = "EFFECTIVE_FROM" -%}
-{%- set src_payload = ['ORDERSTATUS', 'TOTALPRICE', 'ORDERDATE', 'ORDERPRIORITY', 'CLERK', 'SHIPPRIORITY', 'ORDER_COMMENT'] -%}
+{%- set src_payload = ["ORDERSTATUS", "TOTALPRICE", "ORDERDATE", "ORDERPRIORITY", "CLERK", "SHIPPRIORITY", "ORDER_COMMENT"] -%}
 {%- set src_ldts = "LOAD_DATE" -%}
 {%- set src_source = "RECORD_SOURCE" -%}
 

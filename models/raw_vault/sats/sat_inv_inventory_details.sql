@@ -1,10 +1,10 @@
 {{ config(materialized='incremental', schema='DEMO', tags=['daily_batch', 'satellite']) }}
 
 {%- set source_model = "v_stg_inventory" -%}
-{%- set src_pk = "SUPPLIER_PK" -%}
-{%- set src_hashdiff = "SUPPLIER_NATION_HASHDIFF" -%}
+{%- set src_pk = "INVENTORY_PK" -%}
+{%- set src_hashdiff = "INVENTORY_HASHDIFF" -%}
 {%- set src_eff = "EFFECTIVE_FROM" -%}
-{%- set src_payload = ['SUPPLIER_NATION_NAME', 'SUPPLIER_NATION_COMMENT'] -%}
+{%- set src_payload = ["AVAILQTY", "SUPPLYCOST", "PART_SUPPLY_COMMENT"] -%}
 {%- set src_ldts = "LOAD_DATE" -%}
 {%- set src_source = "RECORD_SOURCE" -%}
 

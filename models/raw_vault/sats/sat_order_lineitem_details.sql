@@ -1,10 +1,10 @@
 {{ config(materialized='incremental', schema='DEMO', tags=['daily_batch', 'satellite']) }}
 
-{%- set source_model = "v_stg_inventory" -%}
-{%- set src_pk = "PART_PK" -%}
-{%- set src_hashdiff = "PART_HASHDIFF" -%}
+{%- set source_model = "v_stg_orders" -%}
+{%- set src_pk = "LINEITEM_PK" -%}
+{%- set src_hashdiff = "LINEITEM_HASHDIFF" -%}
 {%- set src_eff = "EFFECTIVE_FROM" -%}
-{%- set src_payload = ['PART_NAME', 'PART_MFGR', 'PART_BRAND', 'PART_TYPE', 'PART_SIZE', 'PART_CONTAINER', 'PART_RETAILPRICE', 'PART_COMMENT'] -%}
+{%- set src_payload = ["COMMITDATE", "DISCOUNT", "EXTENDEDPRICE", "LINE_COMMENT", "QUANTITY", "RECEIPTDATE", "RETURNFLAG", "SHIPDATE", "SHIPINSTRUCT", "SHIPMODE", "TAX"] -%}
 {%- set src_ldts = "LOAD_DATE" -%}
 {%- set src_source = "RECORD_SOURCE" -%}
 

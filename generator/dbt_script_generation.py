@@ -1,5 +1,6 @@
 import yaml
 import os
+import json
 
 # ==========================================
 # 1. Configuration Paths
@@ -7,11 +8,16 @@ import os
 # Path to your custom YAML file
 yaml_path = 'generator/data_vault_metadata.yml'
 
-# Directory where the dbt SQL files will be saved
-output_dir = 'models/raw_vault'
+# Base directory where the dbt SQL folders will be created
+base_output_dir = 'models/raw_vault'
 
-# Ensure the output directory exists before writing files
-os.makedirs(output_dir, exist_ok=True)
+# Folder mapping based on Data Vault type
+folder_mapping = {
+    'hub': 'hubs',
+    'link': 'links',
+    'satellite': 'sats',
+    't_link': 't_links'
+}
 
 # ==========================================
 # 2. Load the YAML Metadata
@@ -27,6 +33,17 @@ models = dv_config.get('models', {})
 for model_name, config in models.items():
     dv_type = config.get('type')
     
+    # Determine which subfolder this model belongs to
+    subfolder_name = folder_mapping.get(dv_type)
+    
+    if not subfolder_name:
+        print(f"Warning: Unknown type '{dv_type}' for model '{model_name}'. Skipping.")
+        continue
+        
+    # Ensure the specific subfolder exists (e.g., models/raw_vault/hubs)
+    model_dir = os.path.join(base_output_dir, subfolder_name)
+    os.makedirs(model_dir, exist_ok=True)
+
     # Extract dbt config properties (with safe defaults)
     materialized = config.get('materialized', 'incremental')
     schema = config.get('schema', 'raw_vault')
@@ -42,9 +59,8 @@ for model_name, config in models.items():
             continue
         
         # If the value is a list (like src_payload or src_fk), format it as a Jinja list
-        # Otherwise, wrap it in quotes as a string
         if isinstance(value, list):
-            val_str = str(value)  # Python lists convert cleanly to Jinja lists: ['A', 'B']
+            val_str = json.dumps(value)  # <-- Forces double quotes: ["A", "B"]
         else:
             val_str = f'"{value}"'
             
@@ -64,18 +80,14 @@ for model_name, config in models.items():
         
     elif dv_type == 't_link':
         sql += "{{ automate_dv.t_link(src_pk=src_pk, src_fk=src_fk, src_payload=src_payload, src_eff=src_eff, src_ldts=src_ldts, src_source=src_source, source_model=source_model) }}\n"
-        
-    else:
-        print(f"Warning: Unknown type '{dv_type}' for model '{model_name}'. Skipping.")
-        continue
 
     # ==========================================
     # 4. Write the SQL file
     # ==========================================
-    file_path = os.path.join(output_dir, f"{model_name}.sql")
+    file_path = os.path.join(model_dir, f"{model_name}.sql")
     with open(file_path, 'w') as f:
         f.write(sql)
     
     print(f"Generated: {file_path}")
 
-print("\nSuccess! All Data Vault models have been generated.")
+print("\nSuccess! All Data Vault models have been generated into their respective folders.")

@@ -1,8 +1,8 @@
 {{ config(materialized='incremental', schema='DEMO', tags=['daily_batch', 'link']) }}
 
-{%- set source_model = "v_stg_orders" -%}
-{%- set src_pk = "LINK_CUSTOMER_NATION_PK" -%}
-{%- set src_fk = ['CUSTOMER_PK', 'NATION_PK'] -%}
+{%- set source_model = "v_stg_inventory" -%}
+{%- set src_pk = "LINK_SUPPLIER_NATION_PK" -%}
+{%- set src_fk = ["SUPPLIER_PK", "NATION_PK"] -%}
 {%- set src_ldts = "LOAD_DATE" -%}
 {%- set src_source = "RECORD_SOURCE" -%}
 
