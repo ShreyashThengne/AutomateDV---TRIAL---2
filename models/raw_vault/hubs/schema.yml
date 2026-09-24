@@ -1,0 +1,44 @@
+version: 2
+models:
+- name: hub_customer
+  columns:
+  - name: CUSTOMER_PK
+    tests:
+    - unique
+    - not_null
+- name: hub_lineitem
+  columns:
+  - name: LINEITEM_PK
+    tests:
+    - unique
+    - not_null
+- name: hub_nation
+  columns:
+  - name: NATION_PK
+    tests:
+    - unique
+    - not_null
+- name: hub_order
+  columns:
+  - name: ORDER_PK
+    tests:
+    - unique
+    - not_null
+- name: hub_part
+  columns:
+  - name: PART_PK
+    tests:
+    - unique
+    - not_null
+- name: hub_region
+  columns:
+  - name: REGION_PK
+    tests:
+    - unique
+    - not_null
+- name: hub_supplier
+  columns:
+  - name: SUPPLIER_PK
+    tests:
+    - unique
+    - not_null
