@@ -6,12 +6,6 @@ models:
     tests:
     - unique
     - not_null
-- name: hub_customer_v1
-  columns:
-  - name: CUSTOMER_PK
-    tests:
-    - unique
-    - not_null
 - name: hub_lineitem
   columns:
   - name: LINEITEM_PK
